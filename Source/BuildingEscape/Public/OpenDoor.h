@@ -18,14 +18,22 @@ class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 
 
 private:
+	AActor* ownerPtr;
+	FRotator rotator;
+
 	UPROPERTY(EditAnywhere)
 	float openAngle = 60.0f;
 
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate;
 
+	//UPROPERTY(EditAnywhere)
+	AActor* actorThatOpens;
+
 	UPROPERTY(EditAnywhere)
-		AActor* actorThatOpens;
+		float doorCloseDelay = 1.f;
+
+	float lastDoorOpenTime;
 
 
 public:	
@@ -37,6 +45,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	void OpenDoor();
+	void CloseDoor();
 
 public:	
 	// Called every frame
