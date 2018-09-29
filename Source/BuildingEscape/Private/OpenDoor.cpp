@@ -2,6 +2,7 @@
 
 #include "OpenDoor.h"
 #include "GameFramework/Actor.h"
+#include "../Public/OpenDoor.h"
 
 
 
@@ -23,19 +24,25 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	AActor* ownerPtr = GetOwner();
+	actorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
 	
+
+	// ...
+	
+}
+
+void UOpenDoor::OpenDoor()
+{
+	AActor* ownerPtr = GetOwner();
+
 	FRotator rotator = ownerPtr->GetActorRotation();
-	FRotator newRotation = FRotator(rotator.Pitch, rotator.Yaw - 60.f, rotator.Roll);
+	FRotator newRotation = FRotator(rotator.Pitch, rotator.Yaw - openAngle, rotator.Roll);
 
 	//Set the door rotation
 	ownerPtr->SetActorRotation(newRotation);
 
 
 	UE_LOG(LogTemp, Warning, TEXT("Rotator: %s"), *rotator.ToString());
-
-	// ...
-	
 }
 
 
@@ -43,6 +50,14 @@ void UOpenDoor::BeginPlay()
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+	//Poll the TriggerVolume
+
+	//If actorThatOpens is in the volume
+		//OpenDoor()
+
+	if (PressurePlate->IsOverlappingActor(actorThatOpens))
+		OpenDoor();
 
 	// ...
 }
