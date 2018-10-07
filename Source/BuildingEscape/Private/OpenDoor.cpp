@@ -45,7 +45,7 @@ void UOpenDoor::OpenDoor()
 	ownerPtr->SetActorRotation(newRotation);
 
 
-	UE_LOG(LogTemp, Warning, TEXT("Rotator: %s"), *rotator.ToString());
+	// UE_LOG(LogTemp, Warning, TEXT("Rotator: %s"), *rotator.ToString());
 }
 
 void UOpenDoor::CloseDoor()
