@@ -32,6 +32,9 @@ protected:
 
 	void findPhysicsHandleComponent();
 
+	FVector getReachLineEnd();
+	FVector getReachLineStart();
+
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
@@ -42,12 +45,15 @@ private:
 
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 	UInputComponent* inputComponent = nullptr;
+	
 
 	// Ray-cast and grab what's in reach
 	void Grab();
 	void Release();
 
-	FHitResult getFirstPhysicsBodyInReach() const;
+	FHitResult getFirstPhysicsBodyInReach();
+
+	void drawDebugLine(FVector playerViewPointLocation, FVector lineTraceEnd);
 
 	
 
