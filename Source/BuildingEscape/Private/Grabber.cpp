@@ -66,12 +66,23 @@ void UGrabber::Grab()
 	auto hitResult = getFirstPhysicsBodyInReach();
 	auto componentToGrab = hitResult.GetComponent();
 	auto actorHit = hitResult.GetActor();
+	float objectMass = 0.f;
+
+	if(actorHit)
+		objectMass = actorHit->FindComponentByClass<UPrimitiveComponent>()->GetMass();
 	
 	/// if we hit something then attach a physics handle
 	if (actorHit) {
-		// TODO attach physics handle
-		PhysicsHandle->GrabComponentAtLocation(componentToGrab, NAME_None,
-			componentToGrab->GetOwner()->GetActorLocation()); // allow rotation
+
+		if (objectMass <= maxMass)
+		{
+			PhysicsHandle->GrabComponentAtLocation(componentToGrab, NAME_None,
+				componentToGrab->GetOwner()->GetActorLocation()); // allow rotation
+		}
+		else {
+			UE_LOG(LogTemp, Warning, TEXT("%s weights %f. That's too much!"), *(actorHit->GetName()), objectMass)
+		}
+		
 
 	}
 	

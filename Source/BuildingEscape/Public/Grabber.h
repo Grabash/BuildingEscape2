@@ -42,6 +42,8 @@ public:
 		
 private:
 	float reach = 100.f;
+	UPROPERTY(EditAnywhere)
+	float maxMass = 100.f;
 
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 	UInputComponent* inputComponent = nullptr;
