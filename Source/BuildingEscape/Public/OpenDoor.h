@@ -18,14 +18,14 @@ class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 
 
 private:
-	AActor* ownerPtr;
+	AActor* ownerPtr = nullptr;
 	FRotator rotator;
 
 	UPROPERTY(EditAnywhere)
 	float openAngle = 60.0f;
 
 	UPROPERTY(EditAnywhere)
-	ATriggerVolume* PressurePlate;
+	ATriggerVolume* PressurePlate = nullptr;
 
 	//UPROPERTY(EditAnywhere)
 	// AActor* actorThatOpens;

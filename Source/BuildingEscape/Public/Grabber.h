@@ -22,7 +22,7 @@ public:
 	UGrabber();
 
 protected:
-	APlayerController* playerController_ptr;
+	APlayerController* playerController_ptr = nullptr;
 	
 
 	// Called when the game starts

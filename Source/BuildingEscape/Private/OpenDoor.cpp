@@ -95,7 +95,14 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate() {
 
 	// Find all the overlapping actors
 	TArray<AActor*> OverlappingActors;
-	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
+	if (PressurePlate)
+	{
+		PressurePlate->GetOverlappingActors(OUT OverlappingActors);
+	}
+	else {
+		UE_LOG(LogTemp, Error, TEXT("No Trigger Volume set for OppenDoor!"))
+	}
+		
 	FString actorName;
 	float actorMass = 0.f;
 
