@@ -36,33 +36,35 @@ void UOpenDoor::BeginPlay()
 	
 }
 
-void UOpenDoor::OpenDoor()
-{
-	// AActor* ownerPtr = GetOwner();
+//void UOpenDoor::OpenDoor()
+//{
+//	// AActor* ownerPtr = GetOwner();
+//
+//	// FRotator rotator = ownerPtr->GetActorRotation();
+//	// FRotator newRotation = FRotator(rotator.Pitch, rotator.Yaw - openAngle, rotator.Roll);
+//
+//	//Set the door rotation
+//	// ownerPtr->SetActorRotation(newRotation);
+//
+//	
+//
+//
+//	// UE_LOG(LogTemp, Warning, TEXT("Rotator: %s"), *rotator.ToString());
+//}
 
-	// FRotator rotator = ownerPtr->GetActorRotation();
-	FRotator newRotation = FRotator(rotator.Pitch, rotator.Yaw - openAngle, rotator.Roll);
-
-	//Set the door rotation
-	ownerPtr->SetActorRotation(newRotation);
-
-
-	// UE_LOG(LogTemp, Warning, TEXT("Rotator: %s"), *rotator.ToString());
-}
-
-void UOpenDoor::CloseDoor()
-{
-	// AActor* ownerPtr = GetOwner();
-
-	// FRotator rotator = ownerPtr->GetActorRotation();
-	// FRotator newRotation = FRotator(rotator.Pitch, rotator.Yaw - openAngle, rotator.Roll);
-
-	//Set the door rotation
-	ownerPtr->SetActorRotation(rotator);
-
-
-	// UE_LOG(LogTemp, Warning, TEXT("Rotator: %s"), *rotator.ToString());
-}
+//void UOpenDoor::CloseDoor()
+//{
+//	// AActor* ownerPtr = GetOwner();
+//
+//	// FRotator rotator = ownerPtr->GetActorRotation();
+//	// FRotator newRotation = FRotator(rotator.Pitch, rotator.Yaw - openAngle, rotator.Roll);
+//
+//	//Set the door rotation
+//	ownerPtr->SetActorRotation(rotator);
+//
+//
+//	// UE_LOG(LogTemp, Warning, TEXT("Rotator: %s"), *rotator.ToString());
+//}
 
 
 // Called every frame
@@ -77,13 +79,17 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 
 	if (GetTotalMassOfActorsOnPlate() >= requiredMass) {
 
-		lastDoorOpenTime = GetWorld()->GetTimeSeconds();
-		OpenDoor();
+		// lastDoorOpenTime = GetWorld()->GetTimeSeconds();
+		// OpenDoor();
+		OnOpen.Broadcast();
 
 	}
+	else {
+		OnClose.Broadcast();
+	}
 
-	if (GetWorld()->GetTimeSeconds() - lastDoorOpenTime > doorCloseDelay)
-		CloseDoor();
+	/*if (GetWorld()->GetTimeSeconds() - lastDoorOpenTime > doorCloseDelay)
+		CloseDoor()*/;
 		
 
 	// ...
