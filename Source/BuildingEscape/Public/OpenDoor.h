@@ -34,8 +34,11 @@ private:
 	/*UPROPERTY(EditAnywhere)
 		float doorCloseDelay = 1.f;*/
 
+	//Mass on PressurePlate required for the door to open.
 	UPROPERTY(EditAnywhere)
 		float requiredMass = 0.f;
+
+	
 
 	// float lastDoorOpenTime;
 
@@ -54,6 +57,12 @@ public:
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
+
+	
+	/** OpenAngle property declared in C++ made available in Blueprint */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = OpenAngleCPP)
+		float OpenAngleCPP = 0.f;
+	
 
 	// void OpenDoor();
 	// void CloseDoor();
