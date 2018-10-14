@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Binaries
 DerivedDataCache
 Intermediate
@@ -13,6 +14,8 @@ Saved
 *.xcodeproj
 *.xcworkspace
 
+=======
+>>>>>>> 7ec79316ce3ab42eff86842d5f470009a17cf7db
 # Visual Studio 2015 user specific files
 .vs/
 
@@ -89,4 +92,8 @@ Intermediate/*
 Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
+<<<<<<< HEAD
 DerivedDataCache/*
+=======
+DerivedDataCache/*
+>>>>>>> 7ec79316ce3ab42eff86842d5f470009a17cf7db
